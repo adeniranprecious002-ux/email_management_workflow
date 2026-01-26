@@ -153,7 +153,7 @@ See the screenshots/ folder for:
 
 **👤 Author**
 
-TS Academy Assignment Project
+Adeniran Precious Adebayo
 
 **📝 License**
 
@@ -161,3 +161,4 @@ This project is for educational purposes.
 
 **Status:** ✅ Complete and Ready for Demonstration  
 **Last Updated:** January 26, 2026
+
