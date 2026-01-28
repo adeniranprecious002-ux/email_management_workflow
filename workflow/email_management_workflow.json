@@ -1,0 +1,523 @@
+{
+  "name": "Assignment TS Academy",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -336,
+        32
+      ],
+      "id": "99bb95ac-7b9e-4bdf-aaf9-6330f6d217f0",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Y4zDXKjuhFjzSN5m",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0AACN6LZT9",
+          "mode": "list",
+          "cachedResultName": "sales"
+        },
+        "text": "=📧 New Customer Email Received  \nFrom:  {{ $json.From }}\nSubject:  {{ $json.Subject }}\nSummary: {{$json[\"snippet\"].slice(0, 150)}}...",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        864,
+        176
+      ],
+      "id": "c6a14c3e-2a04-4799-bd6e-127e0a8343e8",
+      "name": "Send a message",
+      "webhookId": "dff513f0-024a-44e3-81b8-8e5f4a327c19",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "khHIEEVl0mWLOe3l",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0AAMQ6RR8B",
+          "mode": "list",
+          "cachedResultName": "marketing"
+        },
+        "text": "=📧 New Customer Email Received   \nFrom:  {{ $json.From }} \nSubject:  {{ $json.Subject }} \nSummary: {{$json[\"snippet\"].slice(0, 150)}}..",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        592,
+        256
+      ],
+      "id": "70411f04-6c64-44e1-8653-498974c67e16",
+      "name": "Send a message1",
+      "webhookId": "f8265b81-5d82-41b4-bb7e-9e131a223d1a",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "khHIEEVl0mWLOe3l",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0AACN97H0F",
+          "mode": "list",
+          "cachedResultName": "hr"
+        },
+        "text": "=📧 New Customer Email Received   \nFrom:  {{ $json.From }} \nSubject:  {{ $json.Subject }} \nSummary: {{$json[\"snippet\"].slice(0, 150)}}..",
+        "otherOptions": {
+          "mrkdwn": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        528,
+        -208
+      ],
+      "id": "9aa6a537-8a07-43b7-a0a6-f23cd5612e88",
+      "name": "Send a message2",
+      "webhookId": "5f8d0d17-e1dd-426e-8762-cbccf492acf9",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "khHIEEVl0mWLOe3l",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0AACNA9AMD",
+          "mode": "list",
+          "cachedResultName": "general"
+        },
+        "text": "=📩 Unclassified Email Received  \nFrom: {{ $json.From }}\nSubject: {{ $json.Subject }}  \nPlease review manually.",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        320,
+        336
+      ],
+      "id": "ba5d4091-e340-4fec-88ad-aa615a06a34a",
+      "name": "Send a message4",
+      "webhookId": "6302b83f-ad37-4c55-b872-2ece66758bab",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "khHIEEVl0mWLOe3l",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Gmail Trigger').item.json.From }}",
+        "subject": "We Have Received Your Message",
+        "emailType": "text",
+        "message": "Hello,  \n\nThank you for contacting our customer service team. We have received your message and are currently reviewing it. \nOur team will get back to you as soon as possible.  \n\nBest regards, \nCustomer Support Team",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1104,
+        -96
+      ],
+      "id": "4896806b-214c-4113-8892-26698a917861",
+      "name": "Send a message5",
+      "webhookId": "0d817594-3ecc-4a48-b2bd-f217cca0d3e8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Y4zDXKjuhFjzSN5m",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0AB73VAZQ9",
+          "mode": "list",
+          "cachedResultName": "customer-support"
+        },
+        "text": "=📧 New Customer Email Received   \nFrom:  {{ $json.From }} \nSubject:  {{ $json.Subject }} \nSummary: {{$json[\"snippet\"].slice(0, 150)}}..",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        800,
+        -96
+      ],
+      "id": "59bf7c59-5992-4518-9fc1-4e03d4b3be4e",
+      "name": "Send a message3",
+      "webhookId": "3c514861-4ca2-482d-911f-c2e579ec4537",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "khHIEEVl0mWLOe3l",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Sends message to HR Channel on Slack",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        496,
+        -304
+      ],
+      "id": "10166d09-eed8-452b-8120-d00338abcd8d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "Sends message to Customer Service Channel on Slack",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        752,
+        64
+      ],
+      "id": "008309fd-2ba2-4cef-aa76-e020fe26d461",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "Customer Service sends Acknowledgement mail",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1072,
+        64
+      ],
+      "id": "8519badc-0fac-4cf0-bdc2-f50fe920dc52",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "Sends message to Sales Department Channel on Slack",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        816,
+        336
+      ],
+      "id": "bf8d0de9-c275-4cca-972b-0b47ccc4b01d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "Sends message to Marketing Department Channel on Slack",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        544,
+        416
+      ],
+      "id": "1f12dd01-44e5-4da9-b904-2986de303377",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "Fallback incase the mail sent is not in any of the category.",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        272,
+        496
+      ],
+      "id": "8692cb5e-de47-4fcf-b8f5-de6872b4f99e",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ /\\b(job|application|resume|cv|recruitment|applied)\\b/.test((($json.Subject||\"\")+\" \"+($json.snippet||\"\")).toLowerCase()) }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "ad111613-d56e-4084-861f-d0fcb05c436d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "HR"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "a3d522b0-64dc-46a4-a909-4d0fe6bf3c94",
+                    "leftValue": "={{ /\\b(complaint|issue|problem|support|refund|not working)\\b/.test((($json.Subject||\"\")+\" \"+($json.snippet||\"\")).toLowerCase()) }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Customer Service"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b3fad058-c456-4418-93fc-00afa2b68b5e",
+                    "leftValue": "={{ /\\b(price|quotation|buy|purchase|order)\\b/.test((($json.Subject||\"\")+\" \"+($json.snippet||\"\")).toLowerCase()) }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Sales"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "31e8ae09-f3cc-4290-8066-8bd57a1280b0",
+                    "leftValue": "={{ /\\b(campaign|promotion|marketing|brand|advertisement)\\b/.test((($json.Subject||\"\")+\" \"+($json.snippet||\"\")).toLowerCase()) }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Marketing"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -128,
+        32
+      ],
+      "id": "08749f3e-80cd-4ba3-95fd-d30c399fa6d9",
+      "name": "Switch"
+    }
+  ],
+  "pinData": {
+    "Gmail Trigger": [
+      {
+        "json": {
+          "id": "19bf6421750f29ad",
+          "threadId": "19bf6421750f29ad",
+          "snippet": "Hello, team",
+          "payload": {
+            "mimeType": "multipart/alternative"
+          },
+          "sizeEstimate": 6972,
+          "historyId": "1198119",
+          "internalDate": "1769363070000",
+          "labels": [
+            {
+              "id": "INBOX",
+              "name": "INBOX"
+            },
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_PERSONAL",
+              "name": "CATEGORY_PERSONAL"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            }
+          ],
+          "From": "Solomon James <solomonjames200sj@gmail.com>",
+          "Subject": "General Inquiry",
+          "To": "\"adeniranprecious002@gmail.com\" <adeniranprecious002@gmail.com>"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message3": {
+      "main": [
+        [
+          {
+            "node": "Send a message5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "9dd1bb1b-2d8b-49eb-9ccb-ae253e78f0f0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d6c89bc580020e2b65b2c0080fba7b72d82724124a2aa9f2ecba425c9d92bcf9"
+  },
+  "id": "zO-ok4mbwWRQAS57sSwVE",
+  "tags": []
+}
